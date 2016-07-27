@@ -1,0 +1,29 @@
+{
+  "name": "emacs-undo-tree-parser",
+  "version": "0.0.0",
+  "description": "A JavaScript parser for emacs persistent undo tree files",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wbbrick/emacs-undo-tree-parser.git"
+  },
+  "keywords": [
+    "emacs",
+    "parser",
+    "s-expression"
+  ],
+  "author": "Bryan Brick",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wbbrick/emacs-undo-tree-parser/issues"
+  },
+  "homepage": "https://github.com/wbbrick/emacs-undo-tree-parser#readme",
+  "dependencies": {
+    "elparser": "0.0.9",
+    "s-expression": "^3.0.3",
+    "sexpr-plus": "^7.0.0"
+  }
+}
