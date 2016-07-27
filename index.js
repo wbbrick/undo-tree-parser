@@ -1,8 +1,15 @@
 var fs = require('fs');
 var parse = require('sexpr-plus').parse;
+var moment = require('moment');
 
 (function (){
 	'use strict';
+
+	function emacsDateConverter( date ) {
+		let high = date[0], low = date[1];
+		return moment.unix( high * Math.pow(2, 16) + low ).toString();
+	}
+
 	function isNaN(value) {
 		return typeof(value) === 'number' && value != +value;
 	}
@@ -44,7 +51,7 @@ var parse = require('sexpr-plus').parse;
 			let expr = parse( rawExpr );
 			let processedList = expr.map( processNode );
 			let timeStamps = expr.reduce( findTimestamps, [] );
-			console.dir( timeStamps );
+			console.dir( timeStamps.map( emacsDateConverter ) );
 
 		}
 

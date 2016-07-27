@@ -22,8 +22,7 @@
   },
   "homepage": "https://github.com/wbbrick/emacs-undo-tree-parser#readme",
   "dependencies": {
-    "elparser": "0.0.9",
-    "s-expression": "^3.0.3",
+    "moment": "^2.14.1",
     "sexpr-plus": "^7.0.0"
   }
 }
