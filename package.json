@@ -23,6 +23,7 @@
   "homepage": "https://github.com/wbbrick/emacs-undo-tree-parser#readme",
   "dependencies": {
     "moment": "^2.14.1",
-    "sexpr-plus": "^7.0.0"
+    "sexpr-plus": "^7.0.0",
+    "yargs": "^4.8.1"
   }
 }
