@@ -41,10 +41,10 @@ export function findTimestamps( memo, it ) {
 	return memo;
 }
 export function processData( data ) {
-		let rawString = data.toString();
-		let rawExpr = rawString.slice( rawString.indexOf( '\n' ) + 1 );
-		let expr = parse( rawExpr );
-		let processedList = expr.map( processNode );
-		let timeStamps = expr.reduce( findTimestamps, [] );
-		console.dir( timeStamps.map( emacsDateConverter ) );
-	}
+	let rawString = data.toString();
+	let rawExpr = rawString.slice( rawString.indexOf( '\n' ) + 1 );
+	let expr = parse( rawExpr );
+	let processedList = expr.map( processNode );
+	let timeStamps = expr.reduce( findTimestamps, [] );
+	console.dir( timeStamps.map( emacsDateConverter ) );
+}
