@@ -1,12 +1,12 @@
 {
-  "name": "undo-tree-parser",
+  "name": "@wbbrick/undo-tree-parser",
   "version": "0.0.0",
   "description": "A JavaScript parser for persistent undo tree files created by text editors",
   "main": "./bin/index.js",
   "scripts": {
     "test": "node bin/index.js test.undo",
     "build-full": "rollup -c rollup-config/rollup.cli.config.js && rollup -c rollup-config/rollup.api.config.js",
-    "build-min": "rollup -c rollup-config/rollup.cli.min.config.js && rollup -c rollup-config/rollup.api.min.config.js",
+    "build-min": "rollup -c rollup-config/rollup.api.config.js",
     "build": "npm run build-full && npm run build-min",
     "watch": "chokidar \"src/*.js\" -c \"npm run build-full\" --initial"
   },
