@@ -17,7 +17,11 @@
     "parser",
     "s-expression"
   ],
-  "author": "Bryan Brick",
+  "bin": {
+    "undo-tree-parser": "./bin/cli"
+  },
+  "main": "./bin/index",
+  "author": "Bryan Brick <wbbrick@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/wbbrick/emacs-undo-tree-parser/issues"
@@ -35,5 +39,7 @@
     "rollup-plugin-babel": "^2.6.1",
     "rollup-plugin-commonjs": "^3.3.1",
     "rollup-plugin-node-resolve": "^2.0.0"
-  }
+  },
+  "analyze": true,
+  "preferGlobal": true
 }
