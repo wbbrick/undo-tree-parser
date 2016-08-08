@@ -90,15 +90,18 @@ var args = yargs.usage('Usage: $0 <filename> [options]').example('$0 test.undo -
 
 var options = {
 	'editor': args.editor,
-	'format': args.format,
-	'output': args.output
+	'format': args.format
 };
 
-function processFile(err, output) {
+function processFile(err, data) {
 	if (err) {
 		throw err;
+	}
+	var output = processData(data, options);
+	if (!args.output || args.output === "process.stdout") {
+		console.log(output);
 	} else {
-		processData(output, options);
+		fs.writeFile(args.output, output);
 	}
 }
 
