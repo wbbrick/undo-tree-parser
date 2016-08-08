@@ -102,6 +102,10 @@ function processFile(err, output) {
 	}
 }
 
+if (!args._[0]) {
+	throw new Error('Filename not specified.');
+}
+
 try {
 	fs.readFile(args._[0], processFile);
 } catch (e) {
