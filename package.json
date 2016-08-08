@@ -20,7 +20,7 @@
     "s-expression"
   ],
   "bin": {
-    "undo-tree-parser": "./bin/cli"
+    "undo-tree-parser": "./bin/cli.js"
   },
   "author": "Bryan Brick <wbbrick@gmail.com>",
   "license": "ISC",
