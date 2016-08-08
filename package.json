@@ -2,15 +2,17 @@
   "name": "emacs-undo-tree-parser",
   "version": "0.0.0",
   "description": "A JavaScript parser for emacs persistent undo tree files",
-  "main": "index.js",
+  "main": "./bin/index",
   "scripts": {
     "test": "node bin/index.js test.undo",
-    "build": "rollup -c rollup.cli.config.js && rollup -c rollup.api.config.js",
-    "watch": "chokidar \"src/*.js\" -c \"npm run build\" --initial"
+    "build-full": "rollup -c rollup-config/rollup.cli.config.js && rollup -c rollup-config/rollup.api.config.js",
+    "build-min": "rollup -c rollup-config/rollup.cli.min.config.js && rollup -c rollup-config/rollup.api.min.config.js",
+    "build": "npm run build-full && npm run build-min",
+    "watch": "chokidar \"src/*.js\" -c \"npm run build-full\" --initial"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wbbrick/emacs-undo-tree-parser.git"
+    "url": "git+https://github.com/wbbrick/undo-tree-parser.git"
   },
   "keywords": [
     "emacs",
@@ -20,13 +22,12 @@
   "bin": {
     "undo-tree-parser": "./bin/cli"
   },
-  "main": "./bin/index",
   "author": "Bryan Brick <wbbrick@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/wbbrick/emacs-undo-tree-parser/issues"
+    "url": "https://github.com/wbbrick/undo-tree-parser/issues"
   },
-  "homepage": "https://github.com/wbbrick/emacs-undo-tree-parser#readme",
+  "homepage": "https://github.com/wbbrick/undo-tree-parser#readme",
   "dependencies": {
     "moment": "^2.14.1",
     "sexpr-plus": "^7.0.0",
@@ -38,7 +39,8 @@
     "chokidar-cli": "^1.2.0",
     "rollup-plugin-babel": "^2.6.1",
     "rollup-plugin-commonjs": "^3.3.1",
-    "rollup-plugin-node-resolve": "^2.0.0"
+    "rollup-plugin-node-resolve": "^2.0.0",
+    "rollup-plugin-uglify": "^1.0.1"
   },
   "analyze": true,
   "preferGlobal": true
