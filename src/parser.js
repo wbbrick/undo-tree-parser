@@ -46,5 +46,5 @@ export function processData( data ) {
 	let expr = parse( rawExpr );
 	let processedList = expr.map( processNode );
 	let timeStamps = expr.reduce( findTimestamps, [] );
-	console.dir( timeStamps.map( emacsDateConverter ) );
+	return timeStamps.map( emacsDateConverter );
 }
