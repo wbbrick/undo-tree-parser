@@ -1,7 +1,7 @@
 {
-  "name": "emacs-undo-tree-parser",
+  "name": "undo-tree-parser",
   "version": "0.0.0",
-  "description": "A JavaScript parser for emacs persistent undo tree files",
+  "description": "A JavaScript parser for persistent undo tree files created by text editors",
   "main": "./bin/index",
   "scripts": {
     "test": "node bin/index.js test.undo",

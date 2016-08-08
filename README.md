@@ -1,2 +1,2 @@
-# emacs-undo-tree-parser
-A node parser for emacs undo-tree files
+# Undo Tree Parser
+A JavaScript parser for persistent undo tree files created by text editors
