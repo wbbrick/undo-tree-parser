@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "node bin/index.js test.undo",
-    "build": "rollup -c",
+    "build": "rollup -c rollup.cli.config.js && rollup -c rollup.api.config.js",
     "watch": "chokidar \"src/*.js\" -c \"npm run build\" --initial"
   },
   "repository": {
