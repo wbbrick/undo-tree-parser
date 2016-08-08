@@ -6,5 +6,6 @@ export default {
 	plugins: [
 		babel()
 	],
-	dest: 'bin/cli.js'
+	dest: 'bin/cli.js',
+    banner: '#!/usr/bin/env node'
 };

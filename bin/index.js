@@ -1,1 +1,72 @@
-!function(t,e){"object"==typeof exports&&"undefined"!=typeof module?module.exports=e(require("sexpr-plus"),require("moment")):"function"==typeof define&&define.amd?define(["sexpr-plus","moment"],e):t.UndoTreeParser=e(t.sexprPlus,t.moment)}(this,function(t,e){"use strict";function n(t){var n=t[0],r=t[1];return e.unix(n*Math.pow(2,16)+r).toString()}function r(t){return"number"==typeof t&&t!=+t}function o(t){return"list"===t.type?t.content.map(o):{type:t.type,content:t.content}}function u(t,e){if("list"===e.type){var n=e.content.filter(function(t){return"t"!==t.content}),o=4===n.length&&n.reduce(function(t,e){return t&&!r(parseInt(e.content,0))},!0);return o?t.concat([n.map(function(t){return parseInt(t.content,0)})]):t.concat(n.reduce(u,[]))}return t}function i(e){var r=e.toString(),i=r.slice(r.indexOf("\n")+1),c=t.parse(i),f=(c.map(o),c.reduce(u,[]));console.dir(f.map(n))}function c(t,e){var n=e.editor,r=void 0===n?"emacs":n,o=e.format,u=void 0===o?"unix":o;try{return i(t,{editor:r,format:u})}catch(t){throw t}}return c});
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('sexpr-plus'), require('moment')) :
+	typeof define === 'function' && define.amd ? define(['sexpr-plus', 'moment'], factory) :
+	(global.UndoTreeParser = factory(global.sexprPlus,global.moment));
+}(this, function (sexprPlus,moment) { 'use strict';
+
+	function emacsDateConverter(date) {
+		var high = date[0],
+		    low = date[1];
+		return moment.unix(high * Math.pow(2, 16) + low).toString();
+	}
+
+	function isNaN(value) {
+		return typeof value === 'number' && value != +value;
+	}
+
+	function processNode(node) {
+		if (node.type === 'list') {
+			return node.content.map(processNode);
+		} else {
+			return {
+				'type': node.type,
+				'content': node.content
+			};
+		}
+	}
+
+	function findTimestamps(memo, it) {
+		if (it.type === 'list') {
+
+			//remove true values as sometimes they prepend timestamps and mess up our count
+			var content = it.content.filter(function (item) {
+				return item.content !== 't';
+			});
+
+			//condition for a timestamp
+			var isTimestamp = content.length === 4 && content.reduce(function (memo, n) {
+				return memo && !isNaN(parseInt(n.content, 0));
+			}, true);
+
+			if (isTimestamp) {
+				return memo.concat([content.map(function (item) {
+					return parseInt(item.content, 0);
+				})]);
+			} else {
+				return memo.concat(content.reduce(findTimestamps, []));
+			}
+		}
+		return memo;
+	}
+	function processData(data) {
+		var rawString = data.toString();
+		var rawExpr = rawString.slice(rawString.indexOf('\n') + 1);
+		var expr = sexprPlus.parse(rawExpr);
+		var processedList = expr.map(processNode);
+		var timeStamps = expr.reduce(findTimestamps, []);
+		return timeStamps.map(emacsDateConverter);
+	}
+
+	function parse$1(data, options) {
+	    options.editor = options.editor || 'emacs';
+	    options.format = options.format || 'unix';
+	    try {
+	        return processData(data, options);
+	    } catch (e) {
+	        throw e;
+	    }
+	}
+
+	return parse$1;
+
+}));
