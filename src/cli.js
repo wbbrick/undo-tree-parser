@@ -1,4 +1,4 @@
-import { readFile } from 'fs';
+import { readFile, writeFile } from 'fs';
 import { processData } from './parser';
 import yargs from 'yargs';
 
@@ -43,16 +43,19 @@ let args = yargs
 
 let options = {
 	'editor': args.editor,
-	'format': args.format,
-	'output': args.output
+	'format': args.format
 };
 
-function processFile( err, output ) {
+function processFile( err, data ) {
 	if( err ) {
 		throw err;
-	} else {
-		processData( output, options );
 	}
+    let output = processData( data, options );
+    if( !args.output || args.output === "process.stdout" ) {
+        console.log( output );
+    } else {
+        writeFile( args.output, output );
+    }
 }
 
 if( !args._[0] ) {
